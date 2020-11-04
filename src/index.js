@@ -1,4 +1,4 @@
-module.exports = function toReadable (number) {
+module.exports = function toReadable (n) {
     const obj ={
         0 : 'zero',
         1 : 'one',
@@ -38,33 +38,33 @@ module.exports = function toReadable (number) {
         800: 'eight hundred',
         900: 'nine hundred'
     }
-    if(number <= 20) {
+    if(n <= 20) {
         for (let key in obj) {
-            if (number === +key) {
+            if (n === +key) {
                 return obj[key]
             }
         }
-    }  else if( number <= 100 && number > 20){
-        const first = number - number % 10
-        const second = number % 10
+    }  else if( n <= 100 && n > 20){
+        const first = n - n % 10
+        const second = n % 10
         if(second === 0){
             return(`${obj[first]}`)
         }
         return (`${obj[first]} ${obj[second]}`)
-    } else if( number > 100){
+    } else if( n > 100){
         for(let key in obj){
-            if(number === +key){
+            if(n === +key){
                 return (obj[key])
             }
         }
-        const first = number - number % 100
-        const second = number %100 - number % 10
-        const third =  number %100 % 10
+        const first = n- n % 100
+        const second = n %100 - n % 10
+        const third =  n %100 % 10
         if(third === 0){
             return(`${obj[first]} ${obj[second]}`)
         }
-        if(number % 100 <= 19){
-            return(`${obj[first]} ${obj[number % 100]}`)
+        if(n % 100 <= 19){
+            return(`${obj[first]} ${obj[n % 100]}`)
         }
         return (`${obj[first]} ${obj[second]} ${obj[third]}`)
     }
